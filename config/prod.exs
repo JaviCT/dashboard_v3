@@ -59,6 +59,22 @@ config :logger, level: :info
 #     config :dashboard2, Dashboard2Web.Endpoint, server: true
 #
 
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
+config :evercam_models, Evercam.Repo,
+  types: Evercam.PostgresTypes,
+  url: System.get_env("DATABASE_URL"),
+  socket_options: [keepalive: true],
+  timeout: 60_000,
+  pool_size: 10,
+  lazy: false,
+  ssl: true
+
+config :evercam_models, Evercam.SnapshotRepo,
+  url: System.get_env("SNAPSHOT_DATABASE_URL"),
+  socket_options: [keepalive: false],
+  timeout: 60_000,
+  pool_size: 5,
+  lazy: false,
+  ssl: true
+
+config :dashboard2, Dashboard2Web.Endpoint,
+  secret_key_base: "iI2duFtOfwI9THfNSCq6xePd3jb7Mv8rOqD8plAxt5JtcrpZVyXhQEFXS4d1wox/"
