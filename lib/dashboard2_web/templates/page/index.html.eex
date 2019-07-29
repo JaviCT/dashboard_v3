@@ -1,0 +1,1 @@
+<div id="app" current_user="<%= @user %>"></div>
