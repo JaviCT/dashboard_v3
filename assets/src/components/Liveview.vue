@@ -95,7 +95,7 @@ export default {
       let api_id = this.$root.user.api_id
       let api_key = this.$root.user.api_key
       let camera = thsi.$route.params.id
-      axios.get(process.env.VUE_APP_API_URL + 'cameras/' + camera,{
+      axios.get('https://media.evercam.io/v2/cameras/' + camera,{
         params: {
           api_id: api_id,
           api_key: api_key

@@ -35,7 +35,7 @@ export default {
       let myitems = []
       let api_id = this.$root.user.api_id
       let api_key = this.$root.user.api_key
-      axios.get(process.env.VUE_APP_API_URL + 'cameras',{
+      axios.get('https://media.evercam.io/v2/cameras',{
         params: {
           api_id: api_id,
           api_key: api_key
