@@ -5,7 +5,7 @@ import adminRouter from './components/adminRouter'
 import router from './router'
 import vuetify from './plugins/vuetify'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faLock, faBars, faChevronRight, faVideo, faExpandArrowsAlt, faPencilAlt, faDownload, faPause, faPlay, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faLock, faBars, faChevronRight, faVideo, faExpandArrowsAlt, faPencilAlt, faDownload, faPause, faPlay, faSearch, faArchive, faEnvelopeOpenText, faMapMarked, faWifi, faCog, faComments, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(
@@ -19,7 +19,14 @@ library.add(
   faDownload,
   faPause,
   faPlay,
-  faSearch
+  faSearch,
+  faArchive,
+  faEnvelopeOpenText,
+  faMapMarked,
+  faWifi,
+  faCog,
+  faComments,
+  faSignOutAlt
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

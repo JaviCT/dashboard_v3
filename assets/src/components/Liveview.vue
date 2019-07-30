@@ -1,12 +1,22 @@
 <template>
   <v-layout align-center justify-center>
+    <img
+      v-if="isLoading"
+      class="navbar-brand-full"
+      src="images/evercam-logo-2.png"
+      alt="Evercam Logo"
+    >
     <v-img
+      v-else
       :src="url"
       :lazy-src="url"
       class="grey lighten-2"
       width="100%"
     ></v-img>
-    <div class="text-xs-center buttons">
+    <div
+      v-if="!isLoading"
+      class="text-xs-center buttons"
+    >
       <v-btn
         dark
         fab
@@ -78,18 +88,32 @@ import { Socket} from 'phoenix-socket'
 export default {
   data: () => ({
     isPlaying: false,
-    url: ""
+    url: "",
+    isLoading: true
   }),
-  mounted() {
-    let socket = new Socket('wss://media.evercam.io/socket', {params: {api_id: this.$root.user.api_id, api_key: this.$root.user.api_key, ip: '1.1.1.1', source: "private_widget"}})
-    socket.connect()
-    this.channel = socket.channel("cameras:" + this.$route.params.id, {})
-    this.channel.join()
-    this.channel.on('snapshot-taken', (data) => {
-      this.url = 'data:image/jpeg;base64,' + data.image
-    });
+  watch: {
+    '$route' (to, from) {
+      if(this.channel) {
+        this.isLoading = true
+        this.channel.leave()
+      }
+      this.lauchSocket()
+    }
+  },
+  created() {
+    this.lauchSocket()
   },
   methods: {
+    lauchSocket() {
+      let socket = new Socket('wss://media.evercam.io/socket', {params: {api_id: this.$root.user.api_id, api_key: this.$root.user.api_key, ip: '1.1.1.1', source: "private_widget"}})
+      socket.connect()
+      this.channel = socket.channel("cameras:" + this.$route.params.id, {})
+      this.channel.join()
+      this.channel.on('snapshot-taken', (data) => {
+        this.url = 'data:image/jpeg;base64,' + data.image
+        this.isLoading = false
+      });
+    },
     getCamera() {
       let myCamera = null
       let api_id = this.$root.user.api_id

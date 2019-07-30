@@ -8,31 +8,33 @@
       id="style-1"
       app
     >
-      <v-list>
+      <v-list class="pt-0" dense>
         <v-list-group
+          no-action
+          sub-group
           value="true"
+          :elevation="5"
         >
-          <template v-slot:activator>
+          <v-list-tile slot="activator">
             <v-list-item-icon>
-              <font-awesome-icon icon="video"/>
+              <img class="navbar-brand-full" src="images/favicon-evercam.png" alt="Evercam Logo">
             </v-list-item-icon>
             <v-list-item-title>Cameras</v-list-item-title>
-          </template>
+          </v-list-tile>
           <v-list-item
             v-for="(item, i) in items"
             :key="i"
             :to="item.to"
             link
           >
-            <v-list-item-icon>
-              <font-awesome-icon icon="video"/>
-            </v-list-item-icon>
             <v-list-tile-content>
               <v-list-tile-title v-text="item.title" />
             </v-list-tile-content>
           </v-list-item>
         </v-list-group>
+      </v-list>
 
+      <v-list class="pt-0" dense>
         <v-list-item>
           <v-list-item-icon>
             <font-awesome-icon icon="video"/>
@@ -43,7 +45,7 @@
 
         <v-list-item>
           <v-list-item-icon>
-            <font-awesome-icon icon="video"/>
+            <font-awesome-icon icon="envelope-open-text"/>
           </v-list-item-icon>
 
           <v-list-item-title>Snapmail</v-list-item-title>
@@ -51,7 +53,7 @@
 
         <v-list-item>
           <v-list-item-icon>
-            <font-awesome-icon icon="video"/>
+            <font-awesome-icon icon="archive"/>
           </v-list-item-icon>
 
           <v-list-item-title>Archives</v-list-item-title>
@@ -59,7 +61,7 @@
 
         <v-list-item>
           <v-list-item-icon>
-            <font-awesome-icon icon="video"/>
+            <font-awesome-icon icon="map-marked"/>
           </v-list-item-icon>
 
           <v-list-item-title>Map View</v-list-item-title>
@@ -67,7 +69,7 @@
 
         <v-list-item>
           <v-list-item-icon>
-            <font-awesome-icon icon="video"/>
+            <font-awesome-icon icon="wifi"/>
           </v-list-item-icon>
 
           <v-list-item-title>Status Report</v-list-item-title>
@@ -75,7 +77,7 @@
 
         <v-list-item>
           <v-list-item-icon>
-            <font-awesome-icon icon="video"/>
+            <font-awesome-icon icon="cog"/>
           </v-list-item-icon>
 
           <v-list-item-title>Settings</v-list-item-title>
@@ -83,7 +85,7 @@
 
         <v-list-item>
           <v-list-item-icon>
-            <font-awesome-icon icon="video"/>
+            <font-awesome-icon icon="comments"/>
           </v-list-item-icon>
 
           <v-list-item-title>Live Support</v-list-item-title>
@@ -94,7 +96,7 @@
           link
         >
           <v-list-item-icon>
-            <font-awesome-icon icon="video"/>
+            <font-awesome-icon icon="sign-out-alt"/>
           </v-list-item-icon>
 
           <v-list-item-title>Sign out</v-list-item-title>
@@ -145,6 +147,7 @@ import axios from 'axios'
 export default {
   name: 'App',
   data: () => ({
+    publicPath: process.env.BASE_URL,
     clipped: true,
     drawer: true,
     fixed: true,

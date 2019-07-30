@@ -40,7 +40,8 @@ defmodule Dashboard2.Mixfile do
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 2.0"},
       {:evercam_models, github: "evercam/evercam_models"},
-      {:jason, "~> 1.1"}
+      {:jason, "~> 1.1"},
+      {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
     ]
   end
 

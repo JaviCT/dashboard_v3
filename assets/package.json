@@ -21,6 +21,7 @@
     "vuetify": "^2.0.0"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-service": "^3.9.0",
     "sass": "^1.17.4",
